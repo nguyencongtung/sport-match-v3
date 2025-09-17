@@ -39,7 +39,7 @@ This document outlines the phased development workflow for the SportMatch MVP, b
 *   `/backend/internal/models/swipe.go`
 *   `/backend/internal/routes/swipeRoutes.go`
 *   `/backend/internal/controllers/swipeController.go`
-    *   `/shared/validators/userValidator.js`
+    *   `/shared/validators/userValidator.go`
 
 ### Phase 2: Chat & Matching Core (3-4 weeks)
 *   **Goal:** Enable real-time communication and basic event discovery.

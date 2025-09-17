@@ -1,4 +1,4 @@
-To implement the SportMatch MVP as outlined, a single repository with a monorepo structure is recommended for simplicity, maintainability, and streamlined development. This approach keeps all components (frontend, backend, and shared utilities) in one place, making it easier to manage dependencies, deployments, and collaboration for a lean MVP. Below, I’ll detail the repository structure, rationale, and considerations for the SportMatch MVP, adhering to the provided architecture principles and tech stack (React Native, Node.js/Express, MongoDB, AWS, Socket.IO).
+To implement the SportMatch MVP as outlined, a single repository with a monorepo structure is recommended for simplicity, maintainability, and streamlined development. This approach keeps all components (frontend, backend, and shared utilities) in one place, making it easier to manage dependencies, deployments, and collaboration for a lean MVP. Below, I’ll detail the repository structure, rationale, and considerations for the SportMatch MVP, adhering to the provided architecture principles and tech stack (React Native, Golang, MongoDB, AWS, Gorilla WebSocket).
 
 ---
 
@@ -191,7 +191,7 @@ If you need a specific part of the repo structure (e.g., detailed file contents,
   - Only core features are implemented, with clear separation (e.g., `/screens` for each feature).
   - Shared utilities reduce code duplication, speeding up development.
 - **Real-Time Features**:
-  - `/backend/src/sockets` isolates Socket.IO logic for chat and match updates, ensuring maintainability.
+  - `/backend/internal/websocket` isolates Gorilla WebSocket logic for chat and match updates, ensuring maintainability.
 
 ---
 
@@ -227,13 +227,13 @@ If you need a specific part of the repo structure (e.g., detailed file contents,
 - **Phase 1 (4-6 weeks)**:
   - [x] Initialize monorepo with Yarn Workspaces.
   - [x] Set up `/frontend` with React Native, React Navigation, and AsyncStorage.
-  - [x] Set up `/backend` with Express, Mongoose, and JWT authentication.
-  - [x] Implement User Profile (`/src/screens/ProfileScreen.js`, `/src/models/User.js`, `/src/routes/userRoutes.js`) and Find Friend (`/src/screens/FindFriendScreen.js`, `/src/routes/swipeRoutes.js`).
+  - [x] Set up `/backend` with Gin Gonic, MongoDB Go driver, and JWT authentication.
+  - [x] Implement User Profile (`/backend/internal/controllers/userController.go`, `/backend/internal/models/user.go`, `/backend/internal/services/userService.go`) and Find Friend (`/frontend/src/screens/FindFriendScreen.js`, `/backend/internal/routes/swipeRoutes.go`).
 - **Phase 2 (3-4 weeks)**:
-  - Add Chat (`/src/screens/ChatScreen.js`, `/src/sockets/chatSocket.js`) with Socket.IO.
-  - Implement Matching (`/src/screens/MatchingScreen.js`, `/src/models/Match.js`).
+  - Add Chat (`/frontend/src/screens/ChatScreen.js`, `/backend/internal/websocket/chatWebSocket.go`) with Gorilla WebSocket.
+  - Implement Matching (`/frontend/src/screens/MatchingScreen.js`, `/backend/internal/models/match.go`).
 - **Phase 3 (2-3 weeks)**:
-  - Build Create Match (`/src/screens/CreateMatchScreen.js`, `/src/routes/matchRoutes.js`).
+  - Build Create Match (`/frontend/src/screens/CreateMatchScreen.js`, `/backend/internal/routes/matchRoutes.go`).
   - Integrate AWS SNS for notifications and analytics in `/shared`.
 - **Phase 4 (1-2 weeks)**:
   - Deploy to AWS (EC2/Lambda for backend, Amplify for frontend).
@@ -243,10 +243,10 @@ If you need a specific part of the repo structure (e.g., detailed file contents,
 
 ### 6. Additional Considerations
 - **Geolocation**: Store Google Maps API keys in `.env` and use `/shared/utils` for geolocation helpers.
-- **Security**: Implement JWT middleware in `/backend/src/middleware` and use `express-validator` in `/shared/validators`.
-- **Testing**: Place unit tests in `/frontend/__tests__` and `/backend/__tests__` using Jest/Supertest.
-- **Analytics**: Store analytics events in `/backend/src/models/Analytics.js` for tracking swipes, matches, etc.
-- **Edge Cases**: Handle no-GPS scenarios in `/frontend/src/utils/geolocation.js` and low-density match areas in `/backend/src/controllers/matchController.js`.
+- **Security**: Implement JWT middleware in `/backend/internal/middleware` and use `go-playground/validator` in `/shared/validators`.
+- **Testing**: Place unit tests in `/backend/test` using Go's built-in testing framework and React Native Testing Library for frontend.
+- **Analytics**: Store analytics events in a dedicated Go model/service for tracking swipes, matches, etc.
+- **Edge Cases**: Handle no-GPS scenarios in `/frontend/src/utils/geolocation.js` and low-density match areas in `/backend/internal/controllers/matchController.go`.
 
 ---
 
