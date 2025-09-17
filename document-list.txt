@@ -1,0 +1,30 @@
+- [x] `app-concept.md`: High-level overview, target audience, problem, USP, platform.
+    *   **Purpose:** To provide a high-level overview of the application, its purpose, and its unique value proposition. This document sets the foundational understanding for the AI.
+    *   **Content:** App Name, Tagline/Slogan, Target Audience, Core Problem Solved, Unique Selling Proposition (USP), Overall Goal/Vision, Platform(s), Monetization Strategy (Optional).
+- [x] `ui-description.md`: Detailed screen-by-screen UI descriptions, including components, layout, and appearance.
+    *   **Purpose:** To describe the visual layout, components, and overall appearance of each screen in the application. This helps the AI understand how the app should look.
+    *   **Content:** Screen-by-Screen Breakdown (Screen Name, Key Elements, Layout Description, Component Details (Type, Label/Placeholder, Appearance, States), Text Content, Visual Hierarchy, Navigation).
+- [x] `functionality-spec.md`: Comprehensive list of features, their descriptions, inputs, outputs, business logic, and error handling.
+    *   **Purpose:** To detail what the app does, how it behaves, and the specific actions users can perform. This is crucial for the AI to implement the core logic.
+    *   **Content:** Feature List (Feature Name, Description, User Actions/Inputs, System Responses/Outputs, Business Logic/Rules, Error Handling, Dependencies).
+- [x] `user-flows.md`: Step-by-step user scenarios and use cases for key interactions.
+    *   **Purpose:** To illustrate the step-by-step paths users take to accomplish specific tasks within the application. This helps the AI understand the sequence of interactions.
+    *   **Content:** User Stories/Use Cases, Detailed Scenarios (Scenario Title, Preconditions, Steps, Postconditions, Alternative Flows/Error Paths).
+- [x] `data-model.md` (Optional but Recommended): Description of data entities, their attributes, and relationships.
+    *   **Purpose:** To define the structure and relationships of the data that the application will manage. This is essential for database design and API development.
+    *   **Content:** Entities/Models, Attributes/Fields (with data types and constraints), Relationships, Validation Rules.
+- [x] `technical-requirements.md` (Optional): Specific technology stack, APIs, and authentication methods.
+    *   **Purpose:** To specify any preferred technologies, architectural patterns, or external integrations. This guides the AI in choosing the right tools and frameworks.
+    *   **Content:** Frontend Technologies, Backend Technologies, Database, Cloud Provider, Authentication Method, External APIs/Services, Deployment Strategy, Performance/Scalability Goals.
+- [ ] `wireframes/mockups/` (Directory): A collection of visual aids (images, PDFs) for UI design.
+    *   **Purpose:** To provide visual representations of the application's UI. These are often more effective than text descriptions for conveying layout and design.
+    *   **Content:** Sketches, Wireframes, Mockups, Prototypes (Optional).
+- [x] `style-guide.md` (Optional): General aesthetic guidelines, brand colors, typography.
+    *   **Purpose:** To define the visual identity and design principles of the application, ensuring consistency across the UI.
+    *   **Content:** Color Palette, Typography, Iconography, Spacing, Component Styles, Imagery Guidelines.
+- [x] `project-roadmap.md`: Outlines the phased development workflow for the MVP.
+    *   **Purpose:** To provide a structured approach for development, detailing phases, goals, key features, and relevant modules.
+    *   **Content:** Overall Development Strategy, Development Phases (Onboarding & Profiles, Chat & Matching Core, Event Creation & Enhancements, Deployment, Testing & Launch), Additional Considerations During Development.
+- [x] `future-features.md`: Lists additional features and enhancements for future iterations.
+    *   **Purpose:** To capture ideas for post-MVP development, guiding future growth and evolution of the application.
+    *   **Content:** Notifications, Enhanced User Discovery & Matching, Event Management & Interaction, Gamification & Engagement, Chat Enhancements, Profile & Settings Enhancements, UI/UX Polish.
