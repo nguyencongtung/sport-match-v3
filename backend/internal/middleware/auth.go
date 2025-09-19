@@ -4,12 +4,11 @@ import (
 	"net/http"
 	"strings"
 
-	"sportmatch-backend/pkg/jwt"
-
 	"github.com/gin-gonic/gin"
+	"sportmatch-backend/pkg/jwt"
 )
 
-// AuthMiddleware validates JWT tokens
+// AuthMiddleware validates JWT tokens from the Authorization header.
 func AuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		authHeader := c.GetHeader("Authorization")
@@ -19,7 +18,15 @@ func AuthMiddleware() gin.HandlerFunc {
 			return
 		}
 
-		tokenString := strings.Replace(authHeader, "Bearer ", "", 1)
+		// Expecting "Bearer TOKEN_STRING"
+		parts := strings.Split(authHeader, " ")
+		if len(parts) != 2 || parts[0] != "Bearer" {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid Authorization header format"})
+			c.Abort()
+			return
+		}
+
+		tokenString := parts[1]
 		claims, err := jwt.ValidateToken(tokenString)
 		if err != nil {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid or expired token"})
@@ -27,6 +34,7 @@ func AuthMiddleware() gin.HandlerFunc {
 			return
 		}
 
+		// Store user ID in context for subsequent handlers
 		c.Set("userID", claims.UserID)
 		c.Next()
 	}

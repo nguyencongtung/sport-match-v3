@@ -25,10 +25,10 @@ func main() {
 	router := gin.Default()
 
 	// Define API routes here
-	routes.SetupUserRoutes(router, database.MI.Db)
-	// swipeRoutes.SetupSwipeRoutes(router, database.MI.Db)
-	// chatRoutes.SetupChatRoutes(router, database.MI.Db)
-	// matchRoutes.SetupMatchRoutes(router, database.MI.Db)
+	routes.SetupUserRoutes(router)
+	routes.SetupSwipeRoutes(router)
+	routes.SetupChatRoutes(router)
+	routes.SetupMatchRoutes(router)
 
 	port := os.Getenv("PORT")
 	if port == "" {

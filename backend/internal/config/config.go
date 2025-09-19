@@ -7,27 +7,36 @@ import (
 	"github.com/joho/godotenv"
 )
 
-// LoadConfig loads environment variables from .env file
-func LoadConfig() {
-	if err := godotenv.Load(); err != nil {
-		log.Fatal("Error loading .env file")
-	}
+// Config holds the application's configuration settings.
+type Config struct {
+	MongoDBURI string
+	JWTSecret  string
+	Port       string
 }
 
-// GetMongoURI retrieves MongoDB URI from environment variables
-func GetMongoURI() string {
-	uri := os.Getenv("MONGODB_URI")
-	if uri == "" {
-		log.Fatal("MONGODB_URI not set in .env file")
+// LoadConfig loads configuration from environment variables or .env file.
+func LoadConfig() *Config {
+	// Load .env file if it exists
+	err := godotenv.Load()
+	if err != nil {
+		log.Println("No .env file found, relying on environment variables.")
 	}
-	return uri
-}
 
-// GetJWTSecret retrieves JWT secret from environment variables
-func GetJWTSecret() string {
-	secret := os.Getenv("JWT_SECRET")
-	if secret == "" {
-		log.Fatal("JWT_SECRET not set in .env file")
+	cfg := &Config{
+		MongoDBURI: os.Getenv("MONGODB_URI"),
+		JWTSecret:  os.Getenv("JWT_SECRET"),
+		Port:       os.Getenv("PORT"),
 	}
-	return secret
+
+	if cfg.MongoDBURI == "" {
+		log.Fatal("MONGODB_URI not set in environment variables or .env file")
+	}
+	if cfg.JWTSecret == "" {
+		log.Fatal("JWT_SECRET not set in environment variables or .env file")
+	}
+	if cfg.Port == "" {
+		cfg.Port = "8080" // Default port
+	}
+
+	return cfg
 }

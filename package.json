@@ -1,0 +1,12 @@
+{
+  "name": "sportmatch-mvp",
+  "private": true,
+  "workspaces": [
+    "frontend/SportMatchFrontend",
+    "backend"
+  ],
+  "scripts": {
+    "frontend:dev": "cd frontend/SportMatchFrontend && yarn start",
+    "backend:dev": "cd backend && go run cmd/api/main.go"
+  }
+}

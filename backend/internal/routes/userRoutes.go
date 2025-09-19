@@ -5,18 +5,16 @@ import (
 	"sportmatch-backend/internal/middleware"
 
 	"github.com/gin-gonic/gin"
-	"go.mongodb.org/mongo-driver/mongo"
 )
 
 // SetupUserRoutes sets up user-related API routes
-func SetupUserRoutes(router *gin.Engine, db *mongo.Database) {
-	userController := controllers.NewUserController(db.Collection("users"))
-
+func SetupUserRoutes(router *gin.Engine) {
 	userRoutes := router.Group("/users")
 	{
-		userRoutes.POST("/register", userController.RegisterUser)
-		userRoutes.POST("/login", userController.LoginUser)
-		userRoutes.GET("/profile", middleware.AuthMiddleware(), userController.GetUserProfile)
-		userRoutes.PUT("/profile", middleware.AuthMiddleware(), userController.UpdateUserProfile)
+		userRoutes.POST("/register", controllers.RegisterUser)
+		userRoutes.POST("/login", controllers.LoginUser)
+		userRoutes.GET("/profile", middleware.AuthMiddleware(), controllers.GetUserProfile)
+		userRoutes.PUT("/profile", middleware.AuthMiddleware(), controllers.UpdateUserProfile)
+		userRoutes.POST("/profile/pictures", middleware.AuthMiddleware(), controllers.UploadProfilePictures)
 	}
 }
